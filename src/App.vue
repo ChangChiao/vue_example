@@ -34,8 +34,6 @@ export default {
 
 <style>
 @import './assets/css/reset.css';
-
-.hello{height: 70vh;}
 #app {
   font-family: 'Microsoft JhengHei' ,'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -7,6 +7,11 @@ import color from '@/components/color'
 import photo from '@/components/photo'
 import user from '@/components/user'
 
+// 安裝了
+// vue-carousel-3d
+// axios
+// sass 
+
 Vue.use(Router)
 Vue.use(Carousel3d)
 

@@ -4,10 +4,9 @@
     <h2>{{textEn}}</h2>
        <ul class="userList">
            <li class="userCard" v-for="(item, index) in content" :key="item.index">
-               <h2>{{item.name}}</h2>
-               <p>{{item.email}}</p>
-               <p class="call">{{item.phone}}</p>
-               <p class="company">{{item.company.name}}</p> 
+               <h2>{{item.Charge}}</h2>
+               <p class="location">{{item.Location}}</p>
+               <p class="address">{{item.Address}}</p>
            </li>
        </ul>
   </div>
@@ -26,8 +25,10 @@ export default {
     }
   },methods:{
      fetchInfo(){
-         axios.get('https://jsonplaceholder.typicode.com/users').then((response)=>{
-            this.content = response.data;
+         axios.get('https://kevin.kitty-rock.com/joe/json.php').then((response)=>{
+            //  const res = JSON.parse(response);
+            //自動幫你轉好parse了 ㄜ
+             this.content = response.data;
              console.log(response);
              console.log(this.content);
          },(error)=>{
@@ -43,63 +44,50 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .hello{
-   padding:50px;    
-   height: 80vh;
-   background: #999;
-}
-h1, h2 {
-  font-weight: normal;
-  margin: 18px;
-}
-
-input{
-    margin-top: 20px;
-}
-.colorEnter{
-  position: relative;
-  height: 30px;
-  width: 30px;
-  left: 0px;
-  top: 0;
-}
-a {
-  color: #42b983;
-}
-.userList{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    margin: 0 auto;
-    flex-wrap :wrap;
-}
-
-.userCard{
-    width: 250px;
-    height: 150px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    border-radius: 10px;
-    color:#555;
-}
-
-.userCard:hover{
-    background-color: rgba(255, 255, 255, .8);
-}
-
-.userCard h2{
-    margin: 20px;
-    color: #fff;
-}
-.call{
-    padding: 5px 0;
-    font-size: 14px;
+    padding:50px;    
+    min-height: 80vh;
+    h1, h2 {
+        font-weight: normal;
+        margin: 18px;
+    }    
+    .userList{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        margin: 0 auto;
+        flex-wrap :wrap;
+        .userCard{
+            width: 250px;
+            height: 150px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            border-radius: 10px;
+            color:#555;
+            margin: 10px;
+            &:hover{
+                background-color: rgba(0, 0, 0, .8);
+            }
+            h2{
+                margin: 20px;
+                color: #666;
+                font-weight: bold;
+            
+            }
+            .address{
+                padding: 5px 0;
+                font-size: 14px;
+                font-size: 12px;
+                color: #999;
+            }         
+            .location{
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    }
 }
 
-.company{
-    font-size: 12px;
-    color: #ccc;
-}
 </style>

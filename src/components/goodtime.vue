@@ -24,8 +24,8 @@ export default {
       keyIn:'',
       todoList:[
         '打東東',
-        '看twice MV',
-        '吃菱角',
+        '看Twice MV',
+        '吃芭樂',
       ]
     }
   },components:{ 
@@ -50,58 +50,56 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .hello{
- padding: 50px;
+  padding: 50px;
+  min-height: 75vh;
+  h1, h2 {
+    font-weight: normal;
+    margin: 20px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    border: 2px solid steelblue;
+    border-radius: 10px;
+    width: 200px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    text-align: left;
+    li {
+      display: block;
+      margin: 20px 10px;
+      position: relative;
+      .delete_btn{
+        width: 60px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+        color: #fff;
+        background: steelblue;
+        position: absolute;
+        top: -5px;right: 0;
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+  }
+  input{
+    margin: 30px 0;
+  }
+  .btn{
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    margin: 50px auto;
+    background: #ccc;
+    border-radius: 8px;
+    /* transition-duration: .5s; */
+    &:hover{
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, .3)
+    }
+  }
 }
-h1, h2 {
-  font-weight: normal;
-  margin: 20px;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-  border: 2px solid steelblue;
-  border-radius: 10px;
-  width: 200px;
-  margin: 0 auto;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
-  text-align: left;
-}
-input{
-  margin: 30px 0;
-}
-li {
-  display: block;
-  margin: 20px 10px;
-  position: relative;
-}
-a {
-  color: #42b983;
-}
-.delete_btn{
-  width: 60px;
-  height: 25px;
-  line-height: 25px;
-  border-radius: 5px;
-  color: #fff;
-  background: steelblue;
-  position: absolute;
-  top: -5px;right: 0;
-  text-align: center;
-  font-size: 14px;
-}
-.btn{
-  width: 200px;
-  height: 50px;
-  line-height: 50px;
-  margin: 50px auto;
-  background: #ccc;
-  border-radius: 8px;
-  /* transition-duration: .5s; */
-}
-.btn:hover{
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, .3)
-  /* border: 1px solid #777; */
-}
+
 </style>
