@@ -26,6 +26,7 @@ export default {
         '打東東',
         '看Twice MV',
         '吃芭樂',
+        '你是哈密,我是瓜'
       ]
     }
   },components:{ 
@@ -53,7 +54,7 @@ export default {
 <style scoped lang="scss">
 .hello{
   padding: 50px;
-  min-height: 75vh;
+  min-height: 85vh;
   h1, h2 {
     font-weight: normal;
     margin: 20px;
@@ -71,6 +72,7 @@ export default {
       display: block;
       margin: 20px 10px;
       position: relative;
+      font-size: 14px;
       .delete_btn{
         width: 60px;
         height: 25px;
@@ -82,6 +84,7 @@ export default {
         top: -5px;right: 0;
         text-align: center;
         font-size: 14px;
+        cursor: pointer;
       }
     }
   }
@@ -91,7 +94,7 @@ export default {
   .btn{
     width: 200px;
     height: 50px;
-    line-height: 50px;
+    line-height: 35px;
     margin: 50px auto;
     background: #ccc;
     border-radius: 8px;

@@ -64,7 +64,7 @@ export default {
 <style scoped  lang="scss">
 .hello{
    padding:50px;    
-   height: 70vh;
+   height: 85vh;
     h1, h2 {
     font-weight: normal;
     margin: 18px;

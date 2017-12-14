@@ -2,8 +2,18 @@
   <div class="hello" :style="{backgroundColor: '#' + colorBar}">
     <h1>{{ msg }}</h1>
     <h2>{{textEn}}</h2>
+    <div>請輸入地址搜尋 <input type="text" v-model="filter_name"></div>
+    <nav aria-label="Page navigation"> 
+        <ul class="pagination">
+                <li :class="{'disabled': (currPage === 1)}" 
+                    @click.prevent="setPage(currPage-1)"><a href="#">Prev</a></li>
+                <li v-for="n in totalPage" :key="n" :class="{'active': (currPage === (n))}" @click.prevent="setPage(n)"><a href="#">{{n}}</a></li>
+                <li :class="{'disabled': (currPage === totalPage)}" 
+                    @click.prevent="setPage(currPage+1)"><a href="#">Next</a></li>
+        </ul>
+    </nav>
        <ul class="userList">
-           <li class="userCard" v-for="(item, index) in content" :key="item.index">
+           <li class="userCard" v-for="(item, index) in filteredcontent.slice(pageStart, pageStart + countPerPage)" :key="item.index">
                <h2>{{item.Charge}}</h2>
                <p class="location">{{item.Location}}</p>
                <p class="address">{{item.Address}}</p>
@@ -18,27 +28,50 @@ export default {
   name: 'user',
   data () {
     return {
-      colorBar:'',
-      msg: '你是哈密,我是瓜',
-      textEn : 'Great minds think alike',
-      content:[]
+      msg: '人要吃飽,車要充飽',
+      textEn : ' To rest is to prepare for a longer journey ahead ',
+      content:[],
+      countPerPage: 9,//一頁顯示的數量
+      currPage: 1, //現在在的頁數
+      filter_name: ''//搜尋名稱
     }
-  },methods:{
-     fetchInfo(){
-         axios.get('https://kevin.kitty-rock.com/joe/json.php').then((response)=>{
-            //  const res = JSON.parse(response);
-            //自動幫你轉好parse了 ㄜ
-             this.content = response.data;
-             console.log(response);
-             console.log(this.content);
-         },(error)=>{
-             console.log(error);
-         })
+  },computed: {
+        filteredcontent: function(){
+            // 因為 JavaScript 的 filter 有分大小寫，
+            // 所以這裡將 filter_name 與 content[n].name 通通轉小寫方便比對。
+            var filter_name = this.filter_name.toLowerCase();
 
-     }
+            // 如果 filter_name 有內容，回傳過濾後的資料，否則將原本的 content 回傳。
+            return ( this.filter_name.trim() !== '' ) ? 
+            this.content.filter(function(item){ return item.Address.toLowerCase().indexOf(filter_name) > -1; }) : 
+            this.content;
+        },
+        pageStart: function(){ //起始顯示項目
+            return (this.currPage - 1) * this.countPerPage;
+        },
+        totalPage: function(){ //計算總頁數
+            return Math.ceil(this.filteredcontent.length / this.countPerPage);
+        }
+  },methods: {
+        setPage: function(index){
+        if( index <= 0 || index > this.totalPage ){
+            return;
+        } //如果不介於頁面範圍之內不作任何動作
+            this.currPage = index;
+        },
+  },created(){
+        axios.get('https://kevin.kitty-rock.com/joe/json.php').then((response)=>{
+        //  const res = JSON.parse(response);
+        //自動幫你parse了 @___@
+            this.content = response.data;
+            console.log(response);
+            console.log(this.content);
+        },(error)=>{
+            console.log(error);
+        })
   },
   mounted(){
-      this.fetchInfo();
+    //   this.fetchInfo();
   },
 }
 </script>
@@ -47,7 +80,7 @@ export default {
 <style scoped lang="scss">
 .hello{
     padding:50px;    
-    min-height: 80vh;
+    min-height: 85vh;
     h1, h2 {
         font-weight: normal;
         margin: 18px;

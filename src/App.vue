@@ -7,7 +7,7 @@
         <router-link to="/goodtime">良辰吉時</router-link>
         <router-link to="/color">暗綠稀紅</router-link>
         <router-link to="/photo">浮光掠影</router-link>
-        <router-link to="/user">英雄豪傑</router-link>
+        <router-link to="/user">電光石火</router-link>
       </nav>
     </header> 
       <transition name="fade" mode="out-in">
@@ -58,6 +58,10 @@ header a{
    letter-spacing: 2px;
    margin: 0 15px;
 }
+header a:hover,header a:active,header a:focus{
+  text-decoration: none;
+  color: #ddd;
+}
 
 footer{
   height: 50px;
@@ -66,6 +70,7 @@ footer{
   background: #333;
   color: #fff;
 }
+
 
 .fade-enter-active, .fade-leave-active{
   transition: all .3s;
